@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tyre Comparison Visualiser</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #f7f9fb;
+      margin: 0;
+      color: #222;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      padding: 32px 24px 48px 24px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 8px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .tyre-compare {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 32px;
+      gap: 32px;
+    }
+    .tyre-card {
+      flex: 1;
+      background: #f0f4f8;
+      border-radius: 12px;
+      padding: 20px 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+        .tyre-select-row {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          margin-bottom: 8px;
+        }
+        .tyre-select {
+          flex: 1;
+          padding: 6px 10px;
+          border-radius: 6px;
+          border: 1px solid #b0b8c1;
+          font-size: 1rem;
+          background: #fff;
+          color: #222;
+          outline: none;
+          transition: border 0.2s;
+        }
+        .tyre-select:focus {
+          border: 1.5px solid #1976d2;
+        }
+        .select-btn {
+          padding: 6px 16px;
+          border-radius: 6px;
+          border: none;
+          background: #1976d2;
+          color: #fff;
+          font-weight: 700;
+          font-size: 1rem;
+          cursor: pointer;
+          transition: background 0.2s;
+        }
+        .select-btn:hover {
+          background: #1256a3;
+        }
+    .tyre-card h2 {
+      font-size: 1.2rem;
+      margin: 0 0 8px 0;
+      font-weight: 700;
+      color: #1976d2;
+    }
+    .vs {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #888;
+      align-self: center;
+    }
+    .graph-section {
+      margin: 40px 0;
+      padding: 32px 24px;
+      background: #f8fafc;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .graph-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #1976d2;
+    }
+    .graph-placeholder {
+      width: 100%;
+      height: 260px;
+      background: repeating-linear-gradient(135deg, #e3e8ee, #e3e8ee 20px, #f7f9fb 20px, #f7f9fb 40px);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #b0b8c1;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+    .aero-maps {
+      display: flex;
+      gap: 24px;
+      margin-top: 16px;
+    }
+    .aero-map-card {
+      flex: 1;
+      background: #e3e8ee;
+      border-radius: 8px;
+      padding: 16px 12px;
+      text-align: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+    }
+    .aero-map-title {
+      font-weight: 700;
+      color: #1976d2;
+      margin-bottom: 8px;
+    }
+    @media (max-width: 700px) {
+      .container { padding: 12px 2vw; }
+      .tyre-compare { flex-direction: column; gap: 12px; }
+      .aero-maps { flex-direction: column; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Tyre Comparison Visualiser</h1>
+    <div class="tyre-compare">
+      <div class="tyre-card">
+        <h2>Tyre 1</h2>
+        <div class="tyre-select-row">
+          <select class="tyre-select" name="tyre1">
+            <option value="">Select Tyre...</option>
+            <option value="tyreA">Tyre A</option>
+            <option value="tyreB">Tyre B</option>
+            <option value="tyreC">Tyre C</option>
+          </select>
+          <button class="select-btn">Choose</button>
+        </div>
+        <div>Brand: <span class="tyre-brand">-</span></div>
+        <div>Model: <span class="tyre-model">-</span></div>
+        <div>Size: <span class="tyre-size">-</span></div>
+      </div>
+      <div class="vs">VS</div>
+      <div class="tyre-card">
+        <h2>Tyre 2</h2>
+        <div class="tyre-select-row">
+          <select class="tyre-select" name="tyre2">
+            <option value="">Select Tyre...</option>
+            <option value="tyreA">Tyre A</option>
+            <option value="tyreB">Tyre B</option>
+            <option value="tyreC">Tyre C</option>
+          </select>
+          <button class="select-btn">Choose</button>
+        </div>
+        <div>Brand: <span class="tyre-brand">-</span></div>
+        <div>Model: <span class="tyre-model">-</span></div>
+        <div>Size: <span class="tyre-size">-</span></div>
+      </div>
+    </div>
+
+    <div class="graph-section">
+      <div class="graph-title">Fz vs Fy</div>
+      <div class="graph-placeholder">[Graph: Fz vs Fy]</div>
+    </div>
+
+    <div class="graph-section">
+      <div class="graph-title">Fz vs Fx</div>
+      <div class="graph-placeholder">[Graph: Fz vs Fx]</div>
+    </div>
+
+    <div class="graph-section">
+      <div class="graph-title">Muy</div>
+      <div class="graph-placeholder">[Graph: Muy]</div>
+    </div>
+
+    <div class="graph-section">
+      <div class="graph-title">dFy / dFz (Local Load Sensitivity Slope)</div>
+      <div class="graph-placeholder">[Graph: dFy / dFz]</div>
+    </div>
+
+    <div class="graph-section">
+      <div class="graph-title">Aero Map Sensitivity</div>
+      <div class="aero-maps">
+        <div class="aero-map-card">
+          <div class="aero-map-title">Low Downforce</div>
+          <div>[Graph: Baseline FS Car]</div>
+        </div>
+        <div class="aero-map-card">
+          <div class="aero-map-title">Medium Downforce</div>
+          <div>[Graph: +X% Fz at Speed]</div>
+        </div>
+        <div class="aero-map-card">
+          <div class="aero-map-title">High Downforce</div>
+          <div>[Graph: Aggressive Wings / Big AoA]</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="/src/index.ts"></script>
+</body>
+</html>

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TyreDataVisualiser")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+079356231fec63ccfee7f840b72355b3af3d35d4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+283a9bf977cc3341e2efc0a81806637cf3b57e17")]
 [assembly: System.Reflection.AssemblyProductAttribute("TyreDataVisualiser")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TyreDataVisualiser")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
