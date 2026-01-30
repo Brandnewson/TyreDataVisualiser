@@ -60,25 +60,26 @@ app.MapPost("/api/upload", async (HttpRequest request) =>
 
     foreach (var file in files)
     {
-        // Extract run number from filename (e.g., "B1965raw1.dat" -> 1)
-        var runNumber = TyreDataVisualiser.Data.TyreTestMappingService.ExtractRunNumber(file.FileName);
+        // Extract round and run number from filename (e.g., "B1965raw1.dat" -> round 8, run 1; "B1654raw5.dat" -> round 6, run 5)
+        var (round, runNumber) = TyreDataVisualiser.Data.TyreTestMappingService.ExtractRoundAndRunNumber(file.FileName);
         
-        if (runNumber == -1)
+        if (round == 0 || runNumber == -1)
         {
-            Console.WriteLine($"WARNING: Could not extract run number from: {file.FileName}");
+            Console.WriteLine($"WARNING: Could not extract round/run number from: {file.FileName}");
             continue;
         }
         
-        // Get test metadata for this run
-        var metadataList = TyreDataVisualiser.Data.TyreTestMappingService.GetTestMetadata(runNumber).ToList();
+        // Get test metadata for this round and run
+        var metadataList = TyreDataVisualiser.Data.TyreTestMappingService.GetTestMetadata(round, runNumber).ToList();
         
         if (!metadataList.Any())
         {
-            Console.WriteLine($"WARNING: No mapping found for run number {runNumber} ({file.FileName})");
+            Console.WriteLine($"WARNING: No mapping found for round {round} run number {runNumber} ({file.FileName})");
             continue;
         }
         
         Console.WriteLine($"Received: {file.FileName} ({file.Length} bytes)");
+        Console.WriteLine($"  Round: {round}");
         Console.WriteLine($"  Run #: {runNumber}");
         Console.WriteLine($"  Found {metadataList.Count} test condition(s):");
         
