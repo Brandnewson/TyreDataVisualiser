@@ -101,6 +101,29 @@ public class TyreTestMappingService
         new TyreTestMetadata { RunNumber = 44, RimDiameter = 13, TyreBrand = "Goodyear", TyreModel = "20x7-13 D2704", RimWidth = 8, TestCondition = "8 psi" },
         new TyreTestMetadata { RunNumber = 44, RimDiameter = 13, TyreBrand = "Goodyear", TyreModel = "20x7-13 D2704", RimWidth = 8, TestCondition = "Final 12 psi" },
         new TyreTestMetadata { RunNumber = 44, RimDiameter = 13, TyreBrand = "Goodyear", TyreModel = "20x7-13 D2704", RimWidth = 8, TestCondition = "Speed test" },
+        
+        // Drive/Brake/Combined Tests (Runs 47-58)
+        // Row 1: Rim 13, Continental 205/470R13 43329, Width 7
+        new TyreTestMetadata { RunNumber = 47, RimDiameter = 13, TyreBrand = "Continental", TyreModel = "205/470R13 43329", RimWidth = 7, TestCondition = "Warmup" },
+        new TyreTestMetadata { RunNumber = 48, RimDiameter = 13, TyreBrand = "Continental", TyreModel = "205/470R13 43329", RimWidth = 7, TestCondition = "Initial 12 psi" },
+        new TyreTestMetadata { RunNumber = 48, RimDiameter = 13, TyreBrand = "Continental", TyreModel = "205/470R13 43329", RimWidth = 7, TestCondition = "10,14 psi" },
+        new TyreTestMetadata { RunNumber = 49, RimDiameter = 13, TyreBrand = "Continental", TyreModel = "205/470R13 43329", RimWidth = 7, TestCondition = "8 psi" },
+        new TyreTestMetadata { RunNumber = 49, RimDiameter = 13, TyreBrand = "Continental", TyreModel = "205/470R13 43329", RimWidth = 7, TestCondition = "Final 12 psi" },
+        new TyreTestMetadata { RunNumber = 49, RimDiameter = 13, TyreBrand = "Continental", TyreModel = "205/470R13 43329", RimWidth = 7, TestCondition = "Speed test" },
+        // Row 2: Rim 13, Goodyear 20x7-13 D2704, Width 7
+        new TyreTestMetadata { RunNumber = 51, RimDiameter = 13, TyreBrand = "Goodyear", TyreModel = "20x7-13 D2704", RimWidth = 7, TestCondition = "Warmup" },
+        new TyreTestMetadata { RunNumber = 52, RimDiameter = 13, TyreBrand = "Goodyear", TyreModel = "20x7-13 D2704", RimWidth = 7, TestCondition = "Initial 12 psi" },
+        new TyreTestMetadata { RunNumber = 52, RimDiameter = 13, TyreBrand = "Goodyear", TyreModel = "20x7-13 D2704", RimWidth = 7, TestCondition = "10,14 psi" },
+        new TyreTestMetadata { RunNumber = 53, RimDiameter = 13, TyreBrand = "Goodyear", TyreModel = "20x7-13 D2704", RimWidth = 7, TestCondition = "8 psi" },
+        new TyreTestMetadata { RunNumber = 53, RimDiameter = 13, TyreBrand = "Goodyear", TyreModel = "20x7-13 D2704", RimWidth = 7, TestCondition = "Final 12 psi" },
+        new TyreTestMetadata { RunNumber = 53, RimDiameter = 13, TyreBrand = "Goodyear", TyreModel = "20x7-13 D2704", RimWidth = 7, TestCondition = "Speed test" },
+        // Row 3: Rim 13, Goodyear 20x7-13 D2704, Width 8
+        new TyreTestMetadata { RunNumber = 56, RimDiameter = 13, TyreBrand = "Goodyear", TyreModel = "20x7-13 D2704", RimWidth = 8, TestCondition = "Warmup" },
+        new TyreTestMetadata { RunNumber = 57, RimDiameter = 13, TyreBrand = "Goodyear", TyreModel = "20x7-13 D2704", RimWidth = 8, TestCondition = "Initial 12 psi" },
+        new TyreTestMetadata { RunNumber = 57, RimDiameter = 13, TyreBrand = "Goodyear", TyreModel = "20x7-13 D2704", RimWidth = 8, TestCondition = "10,14 psi" },
+        new TyreTestMetadata { RunNumber = 58, RimDiameter = 13, TyreBrand = "Goodyear", TyreModel = "20x7-13 D2704", RimWidth = 8, TestCondition = "8 psi" },
+        new TyreTestMetadata { RunNumber = 58, RimDiameter = 13, TyreBrand = "Goodyear", TyreModel = "20x7-13 D2704", RimWidth = 8, TestCondition = "Final 12 psi" },
+        new TyreTestMetadata { RunNumber = 58, RimDiameter = 13, TyreBrand = "Goodyear", TyreModel = "20x7-13 D2704", RimWidth = 8, TestCondition = "Speed test" },
     };
 
     /// <summary>
