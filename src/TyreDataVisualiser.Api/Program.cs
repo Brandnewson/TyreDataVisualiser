@@ -5,6 +5,10 @@ using TyreDataVisualiser.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddCors(options => options.AddPolicy("AllowFrontend", policy =>
+    policy.WithOrigins("http://localhost:5173")
+        .AllowAnyMethod()
+        .AllowAnyHeader()));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<TyreContext>(options =>
@@ -19,6 +23,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("AllowFrontend");
 app.UseHttpsRedirection();
 
 var summaries = new[]
@@ -40,8 +45,54 @@ app.MapGet("/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast");
 
+
 app.MapGet("/tyres", async (TyreContext db) =>
     await db.Tyres.ToListAsync());
+
+// Folder upload endpoint
+app.MapPost("/api/upload", async (HttpRequest request) =>
+{
+    if (!request.HasFormContentType)
+        return Results.BadRequest("No form data.");
+    var files = request.Form.Files;
+    if (files.Count == 0)
+        return Results.BadRequest("No files uploaded.");
+
+    foreach (var file in files)
+    {
+        // Extract run number from filename (e.g., "B1965raw1.dat" -> 1)
+        var runNumber = TyreDataVisualiser.Data.TyreTestMappingService.ExtractRunNumber(file.FileName);
+        
+        if (runNumber == -1)
+        {
+            Console.WriteLine($"WARNING: Could not extract run number from: {file.FileName}");
+            continue;
+        }
+        
+        // Get test metadata for this run
+        var metadataList = TyreDataVisualiser.Data.TyreTestMappingService.GetTestMetadata(runNumber).ToList();
+        
+        if (!metadataList.Any())
+        {
+            Console.WriteLine($"WARNING: No mapping found for run number {runNumber} ({file.FileName})");
+            continue;
+        }
+        
+        Console.WriteLine($"Received: {file.FileName} ({file.Length} bytes)");
+        Console.WriteLine($"  Run #: {runNumber}");
+        Console.WriteLine($"  Found {metadataList.Count} test condition(s):");
+        
+        foreach (var metadata in metadataList)
+        {
+            Console.WriteLine($"    - Test Condition: {metadata.TestCondition}");
+            Console.WriteLine($"      Rim Diameter: {metadata.RimDiameter}");
+            Console.WriteLine($"      Brand: {metadata.TyreBrand}");
+            Console.WriteLine($"      Model: {metadata.TyreModel}");
+            Console.WriteLine($"      Rim Width: {metadata.RimWidth}");
+        }
+    }
+    return Results.Ok(new { count = files.Count });
+});
 
 app.Run();
 

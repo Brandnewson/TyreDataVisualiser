@@ -6,6 +6,45 @@
   <title>Tyre Comparison Visualiser</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    .navbar {
+      width: 100%;
+      background: #1976d2;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      padding: 0;
+      margin-bottom: 32px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-content {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      padding: 0 24px;
+      height: 56px;
+    }
+    .nav-btn {
+      display: inline-block;
+      color: #fff;
+      background: transparent;
+      border: none;
+      font-size: 1.1rem;
+      font-weight: 700;
+      padding: 0 24px;
+      height: 56px;
+      line-height: 56px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+    }
+    .nav-btn:hover, .nav-btn-active {
+      background: #1256a3;
+      color: #fff;
+      border-bottom: 3px solid #fff;
+    }
     body {
       font-family: 'Roboto', Arial, sans-serif;
       background: #f7f9fb;
@@ -143,6 +182,12 @@
 </head>
 <body>
   <div class="container">
+  <nav class="navbar">
+    <div class="nav-content">
+      <a href="/upload" class="nav-btn">Upload File</a>
+      <a href="/compare" class="nav-btn nav-btn-active">Compare Tyre</a>
+    </div>
+  </nav>
     <h1>Tyre Comparison Visualiser</h1>
     <div class="tyre-compare">
       <div class="tyre-card">

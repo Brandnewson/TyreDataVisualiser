@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upload Tyre Data</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #f7f9fb;
+      margin: 0;
+      color: #222;
+    }
+    .navbar {
+      width: 100%;
+      background: #1976d2;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      padding: 0;
+      margin-bottom: 32px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-content {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      padding: 0 24px;
+      height: 56px;
+    }
+    .nav-btn {
+      display: inline-block;
+      color: #fff;
+      background: transparent;
+      border: none;
+      font-size: 1.1rem;
+      font-weight: 700;
+      padding: 0 24px;
+      height: 56px;
+      line-height: 56px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+    }
+    .nav-btn:hover, .nav-btn-active {
+      background: #1256a3;
+      color: #fff;
+      border-bottom: 3px solid #fff;
+    }
+    .container {
+      max-width: 500px;
+      margin: 48px auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      padding: 32px 24px 48px 24px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: #1976d2;
+    }
+    .drop-area {
+      border: 2px dashed #1976d2;
+      border-radius: 12px;
+      background: #f0f4f8;
+      padding: 40px 20px;
+      margin-bottom: 24px;
+      color: #1976d2;
+      font-size: 1.1rem;
+      transition: background 0.2s, border 0.2s;
+      cursor: pointer;
+    }
+    .drop-area.dragover {
+      background: #e3e8ee;
+      border-color: #1256a3;
+    }
+    .file-input {
+      display: none;
+    }
+    .or-text {
+      margin: 16px 0;
+      color: #888;
+      font-weight: 700;
+    }
+    .selected-files {
+      margin-top: 12px;
+      color: #333;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-content">
+      <a href="/" class="nav-btn nav-btn-active">Upload File</a>
+      <a href="/compare" class="nav-btn">Compare Tyre</a>
+    </div>
+  </nav>
+  <div class="container">
+    <h1>Upload Tyre Data</h1>
+    <div class="drop-area" id="drop-area">
+      Drag & Drop your folder here
+    </div>
+    <div class="or-text">or</div>
+    <label for="folderInput" class="select-btn" style="background:#1976d2;color:#fff;padding:8px 24px;border-radius:6px;cursor:pointer;font-weight:700;display:inline-block;">Select Folder
+      <input type="file" id="folderInput" class="file-input" webkitdirectory directory multiple />
+    </label>
+    <div class="selected-files" id="selected-files"></div>
+    <button class="upload-btn" id="uploadBtn" disabled>Upload</button>
+  </div>
+  <script>
+    const dropArea = document.getElementById('drop-area');
+    const fileInput = document.getElementById('folderInput');
+    const selectedFiles = document.getElementById('selected-files');
+    const uploadBtn = document.getElementById('uploadBtn');
+    let filesToUpload = [];
+
+    dropArea.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropArea.classList.add('dragover');
+    });
+    dropArea.addEventListener('dragleave', () => {
+      dropArea.classList.remove('dragover');
+    });
+    dropArea.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropArea.classList.remove('dragover');
+      filesToUpload = Array.from(e.dataTransfer.files);
+      showFiles(filesToUpload);
+    });
+    dropArea.addEventListener('click', () => fileInput.click());
+    fileInput.addEventListener('change', (e) => {
+      filesToUpload = Array.from(e.target.files);
+      showFiles(filesToUpload);
+    });
+    function showFiles(files) {
+      if (!files.length) {
+        selectedFiles.innerHTML = '';
+        uploadBtn.disabled = true;
+        return;
+      }
+      selectedFiles.innerHTML = files.map(f => `<div>${f.webkitRelativePath || f.name}</div>`).join('');
+      uploadBtn.disabled = false;
+    }
+    uploadBtn.onclick = async () => {
+      if (!filesToUpload.length) return;
+      const formData = new FormData();
+      for (const file of filesToUpload) {
+        formData.append('files', file, file.webkitRelativePath || file.name);
+      }
+      uploadBtn.disabled = true;
+      uploadBtn.textContent = 'Uploading...';
+      try {
+        const res = await fetch('/api/upload', { method: 'POST', body: formData });
+        if (res.ok) {
+          alert('Upload complete!');
+        } else {
+          alert('Upload failed.');
+        }
+      } catch (err) {
+        alert('Upload error.');
+      }
+      uploadBtn.disabled = false;
+      uploadBtn.textContent = 'Upload';
+    };
+  </script>
+</body>
+</html>

@@ -30,3 +30,8 @@ This is a beginner-friendly C# console application project. It includes a simple
 - Backend: C# backend which is an API that calculates relevant metrics
 - Frontend: vanilla typescript frontend with 
 - Protocols: We use REST, as our primary protocol due to it's ease of use and pervasiveness
+
+### Current to-dos
+- Create script that transfers TTC data into SQL db
+- Create new SQL schema that allows backend to interface with new data
+- Design backend API that can easily interface with frontend with good error handling
