@@ -1,0 +1,15 @@
+C:\Code\TyreDataVisualiser\src\bin\Debug\net10.0\TyreDataVisualiser.exe
+C:\Code\TyreDataVisualiser\src\bin\Debug\net10.0\TyreDataVisualiser.deps.json
+C:\Code\TyreDataVisualiser\src\bin\Debug\net10.0\TyreDataVisualiser.runtimeconfig.json
+C:\Code\TyreDataVisualiser\src\bin\Debug\net10.0\TyreDataVisualiser.dll
+C:\Code\TyreDataVisualiser\src\bin\Debug\net10.0\TyreDataVisualiser.pdb
+C:\Code\TyreDataVisualiser\src\obj\Debug\net10.0\TyreDataVisualiser.GeneratedMSBuildEditorConfig.editorconfig
+C:\Code\TyreDataVisualiser\src\obj\Debug\net10.0\TyreDataVisualiser.AssemblyInfoInputs.cache
+C:\Code\TyreDataVisualiser\src\obj\Debug\net10.0\TyreDataVisualiser.AssemblyInfo.cs
+C:\Code\TyreDataVisualiser\src\obj\Debug\net10.0\TyreDataVisualiser.csproj.CoreCompileInputs.cache
+C:\Code\TyreDataVisualiser\src\obj\Debug\net10.0\TyreDataVisualiser.sourcelink.json
+C:\Code\TyreDataVisualiser\src\obj\Debug\net10.0\TyreDataVisualiser.dll
+C:\Code\TyreDataVisualiser\src\obj\Debug\net10.0\refint\TyreDataVisualiser.dll
+C:\Code\TyreDataVisualiser\src\obj\Debug\net10.0\TyreDataVisualiser.pdb
+C:\Code\TyreDataVisualiser\src\obj\Debug\net10.0\TyreDataVisualiser.genruntimeconfig.cache
+C:\Code\TyreDataVisualiser\src\obj\Debug\net10.0\ref\TyreDataVisualiser.dll
